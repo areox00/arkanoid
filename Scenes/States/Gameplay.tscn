@@ -1,0 +1,560 @@
+[gd_scene load_steps=30 format=2]
+
+[ext_resource path="res://Scripts/Game/Paddle.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Game/GameEvents.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Game/Game.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Effects/CameraShake.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/Game/Bricks.gd" type="Script" id=5]
+[ext_resource path="res://Scenes/UI/GameUI.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scripts/Game/Pause.gd" type="Script" id=7]
+[ext_resource path="res://Materials/ChromaticAbberation.tres" type="Material" id=8]
+[ext_resource path="res://Scripts/Effects/ScreenEffects.gd" type="Script" id=9]
+[ext_resource path="res://Themes/Theme.tres" type="Theme" id=10]
+[ext_resource path="res://Scripts/UI/TransitionSector.gd" type="Script" id=11]
+[ext_resource path="res://Scripts/Backgrounds/Squares.gd" type="Script" id=12]
+[ext_resource path="res://Materials/Blur.tres" type="Material" id=13]
+[ext_resource path="res://Scripts/Game/BallSpawner.gd" type="Script" id=14]
+[ext_resource path="res://Animations/Extend.tres" type="Animation" id=15]
+[ext_resource path="res://Materials/Laser.tres" type="Material" id=16]
+[ext_resource path="res://Themes/Fonts/Font32.tres" type="DynamicFont" id=17]
+[ext_resource path="res://Themes/Fonts/Font48.tres" type="DynamicFont" id=18]
+[ext_resource path="res://Sounds/death.ogg" type="AudioStream" id=19]
+
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0, 0.455516, 1 )
+colors = PoolColorArray( 0, 0, 0, 0, 0.105494, 0.482286, 0.697266, 1, 0.562669, 0.896484, 0.0503788, 1 )
+
+[sub_resource type="Gradient" id=5]
+offsets = PoolRealArray( 0.876679, 0.946276, 1 )
+colors = PoolColorArray( 0.427734, 0.427734, 0.427734, 1, 0.927734, 0.927734, 0.927734, 1, 0.427734, 0.427734, 0.427734, 1 )
+
+[sub_resource type="GradientTexture2D" id=10]
+resource_local_to_scene = true
+gradient = SubResource( 5 )
+fill_from = Vector2( 0, 1 )
+fill_to = Vector2( 0, 0 )
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0.810745, 0.929182, 1 )
+colors = PoolColorArray( 1, 0.313726, 0.0156863, 1, 1, 1, 1, 1, 1, 0.363281, 0, 1 )
+
+[sub_resource type="GradientTexture2D" id=11]
+resource_local_to_scene = true
+gradient = SubResource( 2 )
+fill_from = Vector2( 0, 1 )
+fill_to = Vector2( 0, 0 )
+
+[sub_resource type="Animation" id=9]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body/Center:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Body/Center:scale:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("Body/Center:scale:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("Body/Right:position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 40, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/4/type = "bezier"
+tracks/4/path = NodePath("Body/Right:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"points": PoolRealArray( 6, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Body/Right:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 40, 6 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Body/Left:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -40, 6 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Collision:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Gradient" id=13]
+offsets = PoolRealArray( 0, 0.998625 )
+colors = PoolColorArray( 0, 0, 0, 0, 1, 1, 1, 0 )
+
+[sub_resource type="ParticlesMaterial" id=14]
+emission_shape = 2
+emission_box_extents = Vector3( 1, 1, 1 )
+flag_disable_z = true
+gravity = Vector3( 0, 98, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+
+[sub_resource type="Environment" id=8]
+background_mode = 4
+glow_enabled = true
+glow_intensity = 0.14
+glow_blend_mode = 0
+adjustment_enabled = true
+
+[sub_resource type="StyleBoxFlat" id=15]
+bg_color = Color( 0.247059, 0.247059, 0.247059, 0.364706 )
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[node name="Gameplay" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="GameEventsBus" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource( 2 )
+
+[node name="Background" type="ColorRect" parent="."]
+margin_left = -960.0
+margin_top = -540.0
+margin_right = 960.0
+margin_bottom = 540.0
+rect_pivot_offset = Vector2( 350, 1770 )
+color = Color( 0, 0, 0, 1 )
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_lock_": true
+}
+gradient = SubResource( 4 )
+
+[node name="Glass" type="ColorRect" parent="."]
+material = ExtResource( 13 )
+margin_left = -560.0
+margin_top = -500.0
+margin_right = 560.0
+margin_bottom = 500.0
+rect_pivot_offset = Vector2( 350, 1770 )
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Paddle" type="KinematicBody2D" parent="." groups=["paddle"]]
+position = Vector2( 0, 430 )
+collision_layer = 5
+script = ExtResource( 1 )
+
+[node name="Body" type="Node2D" parent="Paddle"]
+position = Vector2( 0, 2 )
+
+[node name="Center" type="Polygon2D" parent="Paddle/Body"]
+position = Vector2( 0, -2 )
+offset = Vector2( 32.7273, 8 )
+antialiased = true
+texture = SubResource( 10 )
+polygon = PoolVector2Array( -72.7273, -18, 7.2727, -18, 7.2727, 2, -72.7273, 2 )
+uv = PoolVector2Array( -7.62939e-06, -3.8147e-06, 16, -3.8147e-06, 16, 16, -7.62939e-06, 16 )
+
+[node name="Detal" type="Polygon2D" parent="Paddle/Body"]
+position = Vector2( 0, 3 )
+color = Color( 0.176471, 0.176471, 0.176471, 1 )
+offset = Vector2( 66, -23 )
+antialiased = true
+polygon = PoolVector2Array( -88, 28, -88, 22, -44, 22, -44, 28, -46, 28, -46, 24, -86, 24, -86, 28 )
+uv = PoolVector2Array( -1.52588e-05, 16, -1.52588e-05, 3.8147e-06, 16, 3.8147e-06, 16, 16, 14, 16, 14, 14, 1.99999, 14, 1.99999, 16 )
+
+[node name="Right" type="Node2D" parent="Paddle/Body"]
+position = Vector2( 40, 6 )
+
+[node name="ConnectRight" type="Polygon2D" parent="Paddle/Body/Right"]
+offset = Vector2( 82, 0 )
+antialiased = true
+texture = SubResource( 10 )
+polygon = PoolVector2Array( -82, -14, -78, -14, -78, 0, -82, 0 )
+uv = PoolVector2Array( -7.62939e-06, 0, 16, 0, 16, 16, -7.62939e-06, 16 )
+
+[node name="ShadeRight" type="Polygon2D" parent="Paddle/Body/Right/ConnectRight"]
+color = Color( 0.262745, 0.262745, 0.262745, 1 )
+offset = Vector2( 80, 0 )
+antialiased = true
+polygon = PoolVector2Array( -80, -14, -79, -14, -79, 0, -80, 0 )
+uv = PoolVector2Array( -1.52588e-05, 0, 16, 0, 16, 16, -1.52588e-05, 16 )
+
+[node name="ShadeRight2" type="Polygon2D" parent="Paddle/Body/Right/ConnectRight"]
+position = Vector2( 3, 0 )
+color = Color( 0.262745, 0.262745, 0.262745, 1 )
+offset = Vector2( 80, 0 )
+antialiased = true
+polygon = PoolVector2Array( -80, -14, -79, -14, -79, 0, -80, 0 )
+uv = PoolVector2Array( -1.52588e-05, 0, 16, 0, 16, 16, -1.52588e-05, 16 )
+
+[node name="WingRight" type="Polygon2D" parent="Paddle/Body/Right"]
+position = Vector2( 4, 2 )
+rotation = 3.14159
+scale = Vector2( 1, -1 )
+offset = Vector2( -22, -4 )
+antialiased = true
+texture = SubResource( 11 )
+polygon = PoolVector2Array( 18, -16, 22, -16, 22, 4, 4, 4, 6, -8, 12, -14 )
+uv = PoolVector2Array( 6, 1.90735e-06, 16, 1.90735e-06, 16, 16, 0, 16, 0, 6, 2, 2 )
+
+[node name="Left" type="Node2D" parent="Paddle/Body"]
+position = Vector2( -40, 6 )
+
+[node name="ConnectLeft" type="Polygon2D" parent="Paddle/Body/Left"]
+offset = Vector2( 76, 0 )
+antialiased = true
+texture = SubResource( 10 )
+polygon = PoolVector2Array( -80, -14, -76, -14, -76, 0, -80, 0 )
+uv = PoolVector2Array( -1.52588e-05, 0, 16, 0, 16, 16, -1.52588e-05, 16 )
+
+[node name="ShadeLeft" type="Polygon2D" parent="Paddle/Body/Left/ConnectLeft"]
+position = Vector2( -4, 0 )
+color = Color( 0.262745, 0.262745, 0.262745, 1 )
+offset = Vector2( 80, 0 )
+antialiased = true
+polygon = PoolVector2Array( -80, -14, -79, -14, -79, 0, -80, 0 )
+uv = PoolVector2Array( -1.52588e-05, 0, 16, 0, 16, 16, -1.52588e-05, 16 )
+
+[node name="ShadeLeft2" type="Polygon2D" parent="Paddle/Body/Left/ConnectLeft"]
+position = Vector2( -1, 0 )
+color = Color( 0.262745, 0.262745, 0.262745, 1 )
+offset = Vector2( 80, 0 )
+antialiased = true
+polygon = PoolVector2Array( -80, -14, -79, -14, -79, 0, -80, 0 )
+uv = PoolVector2Array( -1.52588e-05, 0, 16, 0, 16, 16, -1.52588e-05, 16 )
+
+[node name="WingLeft" type="Polygon2D" parent="Paddle/Body/Left"]
+position = Vector2( -4, 2 )
+offset = Vector2( -22, -4 )
+antialiased = true
+texture = SubResource( 11 )
+polygon = PoolVector2Array( 18, -16, 22, -16, 22, 4, 4, 4, 6, -8, 12, -14 )
+uv = PoolVector2Array( 6, 1.90735e-06, 16, 1.90735e-06, 16, 16, 0, 16, 0, 6, 2, 2 )
+
+[node name="Collision" type="CollisionPolygon2D" parent="Paddle"]
+polygon = PoolVector2Array( -62, 10, 62, 10, 62, -10, -62, -10 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Paddle"]
+anims/Extend = ExtResource( 15 )
+anims/RESET = SubResource( 9 )
+
+[node name="RayCast2D" type="RayCast2D" parent="Paddle"]
+position = Vector2( 0, -10 )
+enabled = true
+cast_to = Vector2( 0, -1000 )
+
+[node name="Line2D" type="Line2D" parent="Paddle/RayCast2D"]
+material = ExtResource( 16 )
+points = PoolVector2Array( 0, 0, 0, -490 )
+width = 12.0
+default_color = Color( 0.4, 0.501961, 1, 0 )
+gradient = SubResource( 13 )
+texture_mode = 2
+
+[node name="Particles2D" type="Particles2D" parent="Paddle/RayCast2D"]
+visible = false
+position = Vector2( -10, 0 )
+visibility_rect = Rect2( 0, 0, 20, -580 )
+local_coords = false
+process_material = SubResource( 14 )
+
+[node name="Walls" type="StaticBody2D" parent="."]
+modulate = Color( 0.39, 0.5, 1.5, 1 )
+
+[node name="Up" type="Line2D" parent="Walls"]
+position = Vector2( 6.34193e-05, 6.10352e-05 )
+points = PoolVector2Array( -560, 450, -560, -500, 560, -500, 560, 450 )
+width = 5.0
+joint_mode = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls"]
+polygon = PoolVector2Array( -550, 450, -550, -490, 550, -490, 550, 450, 570, 450, 570, -510, -570, -510, -570, 450 )
+
+[node name="hack" type="StaticBody2D" parent="."]
+modulate = Color( 0.39, 0.5, 1.5, 1 )
+collision_layer = 256
+collision_mask = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="hack"]
+position = Vector2( -20, 870 )
+polygon = PoolVector2Array( -515, -420, -515, -500, -530, -500, -530, -420 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="hack"]
+position = Vector2( 1050, 870 )
+polygon = PoolVector2Array( -500, -420, -500, -500, -515, -500, -515, -420 )
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="hack"]
+position = Vector2( -41, 660 )
+polygon = PoolVector2Array( 601, -460, 601, -500, -519, -500, -519, -460 )
+
+[node name="DeathWall" type="StaticBody2D" parent="." groups=["death"]]
+modulate = Color( 1.5, 0, 0, 1 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DeathWall"]
+polygon = PoolVector2Array( -550, 450, -550, 490, 550, 490, 550, 450, 570, 450, 570, 510, -570, 510, -570, 450 )
+
+[node name="Down" type="Line2D" parent="DeathWall"]
+points = PoolVector2Array( -560, 450, -560, 500, 560, 500, 560, 450 )
+width = 5.0
+default_color = Color( 1, 1, 1, 1 )
+joint_mode = 2
+
+[node name="Polygon2D" type="Polygon2D" parent="DeathWall"]
+visible = false
+position = Vector2( 0, -783.333 )
+scale = Vector2( 1, 2.66667 )
+color = Color( 1, 0, 0, 0.392157 )
+polygon = PoolVector2Array( -560, 500, -1.59589, 500, 560, 500, 560, 470, -560, 470 )
+
+[node name="BallSpawner" type="Node2D" parent="."]
+script = ExtResource( 14 )
+
+[node name="Bricks" type="Node2D" parent="."]
+script = ExtResource( 5 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 8 )
+
+[node name="UI" parent="." instance=ExtResource( 6 )]
+
+[node name="TransitionSector" type="CanvasLayer" parent="."]
+script = ExtResource( 11 )
+
+[node name="Modulate" type="CanvasModulate" parent="TransitionSector"]
+color = Color( 1, 1, 1, 0 )
+
+[node name="Sector" type="Label" parent="TransitionSector"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -160.0
+margin_top = -80.0
+margin_right = 160.0
+margin_bottom = 80.0
+theme = ExtResource( 10 )
+text = "Sector X"
+align = 1
+valign = 1
+
+[node name="ScreenEffects" type="CanvasLayer" parent="."]
+script = ExtResource( 9 )
+
+[node name="ChromaticAbberation" type="ColorRect" parent="ScreenEffects"]
+material = ExtResource( 8 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Pause" type="CanvasLayer" parent="."]
+pause_mode = 2
+visible = false
+script = ExtResource( 7 )
+
+[node name="Panel" type="Panel" parent="Pause"]
+material = ExtResource( 13 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 15 )
+
+[node name="Label" type="Label" parent="Pause"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -160.0
+margin_top = -130.0
+margin_right = 160.0
+margin_bottom = -60.0
+theme = ExtResource( 10 )
+custom_fonts/font = ExtResource( 18 )
+text = "Paused"
+align = 1
+valign = 1
+
+[node name="Warning" type="Label" parent="Pause"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -160.0
+margin_top = 26.0
+margin_right = 160.0
+margin_bottom = 73.0
+theme = ExtResource( 10 )
+custom_fonts/font = ExtResource( 17 )
+text = "(Game will be saved)"
+align = 1
+valign = 1
+
+[node name="Button" type="Button" parent="Pause"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -160.0
+margin_top = -21.0
+margin_right = 160.0
+margin_bottom = 26.0
+theme = ExtResource( 10 )
+custom_fonts/font = ExtResource( 17 )
+text = "Give up?"
+
+[node name="EndGame" type="CanvasLayer" parent="."]
+pause_mode = 2
+visible = false
+
+[node name="Panel" type="Panel" parent="EndGame"]
+material = ExtResource( 13 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 15 )
+
+[node name="Title" type="Label" parent="EndGame"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -280.0
+margin_top = -240.0
+margin_right = 287.0
+margin_bottom = -97.0
+theme = ExtResource( 10 )
+custom_fonts/font = ExtResource( 18 )
+text = "Game Over"
+align = 1
+valign = 1
+
+[node name="Bricks" type="Label" parent="EndGame"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -240.0
+margin_top = -74.0
+margin_right = 240.0
+margin_bottom = -27.0
+theme = ExtResource( 10 )
+custom_fonts/font = ExtResource( 17 )
+text = "Total bricks destroyed:"
+align = 1
+valign = 1
+
+[node name="PowerUps" type="Label" parent="EndGame"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -240.0
+margin_top = -27.0
+margin_right = 240.0
+margin_bottom = 20.0
+theme = ExtResource( 10 )
+custom_fonts/font = ExtResource( 17 )
+text = "Total power ups collected:"
+align = 1
+valign = 1
+
+[node name="Points" type="Label" parent="EndGame"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -240.0
+margin_top = 20.0
+margin_right = 240.0
+margin_bottom = 67.0
+theme = ExtResource( 10 )
+custom_fonts/font = ExtResource( 17 )
+text = "Total points: "
+align = 1
+valign = 1
+
+[node name="Button" type="Button" parent="EndGame"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -160.0
+margin_top = 116.0
+margin_right = 160.0
+margin_bottom = 163.0
+theme = ExtResource( 10 )
+custom_fonts/font = ExtResource( 17 )
+text = "Go back"
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+pause_mode = 2
+stream = ExtResource( 19 )
+volume_db = 15.0
+pitch_scale = 1.19
+
+[connection signal="pressed" from="Pause/Button" to="." method="save_and_quit"]
+[connection signal="pressed" from="EndGame/Button" to="." method="quit"]

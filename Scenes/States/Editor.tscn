@@ -1,0 +1,445 @@
+[gd_scene load_steps=27 format=2]
+
+[ext_resource path="res://Themes/Theme.tres" type="Theme" id=1]
+[ext_resource path="res://Scripts/Effects/CameraShake.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Editor/Editor.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/UI/EditorUI.gd" type="Script" id=4]
+[ext_resource path="res://Scenes/BrickPreview.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scripts/Editor/BrickButton.gd" type="Script" id=6]
+[ext_resource path="res://Themes/BrickButtons.tres" type="Theme" id=7]
+[ext_resource path="res://Resources/Bricks/AquaBrick.tres" type="Resource" id=8]
+[ext_resource path="res://Misc/BrickButtonGroup.tres" type="ButtonGroup" id=9]
+[ext_resource path="res://Resources/Bricks/BlueBrick.tres" type="Resource" id=10]
+[ext_resource path="res://Resources/Bricks/RedBrick.tres" type="Resource" id=11]
+[ext_resource path="res://Resources/Bricks/PurpleBrick.tres" type="Resource" id=12]
+[ext_resource path="res://Resources/Bricks/WhiteBrick.tres" type="Resource" id=13]
+[ext_resource path="res://Resources/Bricks/OrangeBrick.tres" type="Resource" id=14]
+[ext_resource path="res://Resources/Bricks/GreenBrick.tres" type="Resource" id=15]
+[ext_resource path="res://Resources/Bricks/YellowBrick.tres" type="Resource" id=16]
+[ext_resource path="res://Scripts/UI/HoverAnimation.gd" type="Script" id=17]
+[ext_resource path="res://Resources/Bricks/SilverBrick.tres" type="Resource" id=18]
+[ext_resource path="res://Resources/Bricks/GoldenBrick.tres" type="Resource" id=19]
+[ext_resource path="res://Materials/Shine.tres" type="Material" id=20]
+[ext_resource path="res://Textures/placeholder.png" type="Texture" id=21]
+[ext_resource path="res://Shaders/EditorGrid.shader" type="Shader" id=22]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = ExtResource( 22 )
+shader_param/columns = 10.0
+shader_param/rows = 10.0
+
+[sub_resource type="ShaderMaterial" id=5]
+shader = ExtResource( 22 )
+shader_param/columns = 10.0
+shader_param/rows = 10.0
+
+[node name="Editor" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Walls" type="StaticBody2D" parent="."]
+modulate = Color( 0.39, 0.5, 1.5, 1 )
+
+[node name="Up" type="Line2D" parent="Walls"]
+position = Vector2( 6.34193e-05, 6.10352e-05 )
+points = PoolVector2Array( -560, 450, -560, -500, 560, -500, 560, 450 )
+width = 5.0
+default_color = Color( 1, 1, 1, 1 )
+joint_mode = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls"]
+polygon = PoolVector2Array( -550, 450, -550, -490, 550, -490, 550, 450, 570, 450, 570, -510, -570, -510, -570, 450 )
+
+[node name="DeathWall" type="StaticBody2D" parent="." groups=["death"]]
+modulate = Color( 1.5, 0, 0, 1 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DeathWall"]
+polygon = PoolVector2Array( -550, 450, -550, 490, 550, 490, 550, 450, 570, 450, 570, 510, -570, 510, -570, 450 )
+
+[node name="Down" type="Line2D" parent="DeathWall"]
+points = PoolVector2Array( -560, 450, -560, 500, 560, 500, 560, 450 )
+width = 5.0
+default_color = Color( 1, 1, 1, 1 )
+joint_mode = 2
+
+[node name="Polygon2D" type="Polygon2D" parent="DeathWall"]
+visible = false
+position = Vector2( 0, -783.333 )
+scale = Vector2( 1, 2.66667 )
+color = Color( 1, 0, 0, 0.392157 )
+polygon = PoolVector2Array( -560, 500, -1.59589, 500, 560, 500, 560, 470, -560, 470 )
+
+[node name="UI" type="CanvasLayer" parent="."]
+layer = -1
+script = ExtResource( 4 )
+
+[node name="UsableArea" type="ColorRect" parent="UI"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -550.0
+margin_top = -490.0
+margin_right = 550.0
+margin_bottom = 350.0
+color = Color( 0.0313726, 0.886275, 0.0470588, 0.392157 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="SectorName" type="Label" parent="UI"]
+margin_left = 40.0
+margin_top = 70.0
+margin_right = 361.0
+margin_bottom = 128.0
+theme = ExtResource( 1 )
+text = "Sector Name"
+align = 1
+valign = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+margin_left = 40.0
+margin_top = 160.0
+margin_right = 361.0
+margin_bottom = 440.0
+
+[node name="Save" type="Button" parent="UI/VBoxContainer"]
+margin_right = 321.0
+margin_bottom = 70.0
+theme = ExtResource( 1 )
+custom_styles/focus = SubResource( 2 )
+text = "Save"
+script = ExtResource( 17 )
+
+[node name="Play" type="Button" parent="UI/VBoxContainer"]
+margin_top = 74.0
+margin_right = 321.0
+margin_bottom = 144.0
+theme = ExtResource( 1 )
+custom_styles/focus = SubResource( 2 )
+text = "Play"
+script = ExtResource( 17 )
+
+[node name="Back" type="Button" parent="UI/VBoxContainer"]
+margin_top = 148.0
+margin_right = 321.0
+margin_bottom = 218.0
+theme = ExtResource( 1 )
+custom_styles/focus = SubResource( 3 )
+text = "Exit"
+script = ExtResource( 17 )
+
+[node name="BricksButtons" type="Node2D" parent="UI"]
+position = Vector2( 0, 80 )
+
+[node name="ColorRect" type="ColorRect" parent="UI/BricksButtons"]
+margin_left = 1540.0
+margin_top = 80.0
+margin_right = 1900.0
+margin_bottom = 310.0
+mouse_filter = 1
+color = Color( 0.0666667, 0.0627451, 0.0627451, 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Blue" type="Node2D" parent="UI/BricksButtons" groups=["brick_button"]]
+position = Vector2( 1680, 100 )
+
+[node name="Brick" parent="UI/BricksButtons/Blue" instance=ExtResource( 5 )]
+modulate = Color( 0, 0.25098, 1, 1 )
+position = Vector2( 40, 20 )
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+resource = ExtResource( 10 )
+
+[node name="Button" type="Button" parent="UI/BricksButtons/Blue"]
+margin_right = 80.0
+margin_bottom = 40.0
+theme = ExtResource( 7 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+toggle_mode = true
+group = ExtResource( 9 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Aqua" type="Node2D" parent="UI/BricksButtons" groups=["brick_button"]]
+position = Vector2( 1590, 100 )
+
+[node name="Brick" parent="UI/BricksButtons/Aqua" instance=ExtResource( 5 )]
+modulate = Color( 0, 0.694118, 1, 1 )
+position = Vector2( 40, 20 )
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+resource = ExtResource( 8 )
+
+[node name="Button" type="Button" parent="UI/BricksButtons/Aqua"]
+margin_right = 80.0
+margin_bottom = 40.0
+theme = ExtResource( 7 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+toggle_mode = true
+group = ExtResource( 9 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Green" type="Node2D" parent="UI/BricksButtons" groups=["brick_button"]]
+position = Vector2( 1770, 100 )
+
+[node name="Brick" parent="UI/BricksButtons/Green" instance=ExtResource( 5 )]
+modulate = Color( 0.054902, 0.913725, 0.227451, 1 )
+position = Vector2( 40, 20 )
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+resource = ExtResource( 15 )
+
+[node name="Button" type="Button" parent="UI/BricksButtons/Green"]
+margin_right = 80.0
+margin_bottom = 40.0
+theme = ExtResource( 7 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+toggle_mode = true
+group = ExtResource( 9 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Orange" type="Node2D" parent="UI/BricksButtons" groups=["brick_button"]]
+position = Vector2( 1590, 150 )
+
+[node name="Brick" parent="UI/BricksButtons/Orange" instance=ExtResource( 5 )]
+modulate = Color( 0.988235, 0.498039, 0.0196078, 1 )
+position = Vector2( 40, 20 )
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+resource = ExtResource( 14 )
+
+[node name="Button" type="Button" parent="UI/BricksButtons/Orange"]
+margin_right = 80.0
+margin_bottom = 40.0
+theme = ExtResource( 7 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+toggle_mode = true
+group = ExtResource( 9 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Purple" type="Node2D" parent="UI/BricksButtons" groups=["brick_button"]]
+position = Vector2( 1680, 150 )
+
+[node name="Brick" parent="UI/BricksButtons/Purple" instance=ExtResource( 5 )]
+modulate = Color( 0.74902, 0, 1, 1 )
+position = Vector2( 40, 20 )
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+resource = ExtResource( 12 )
+
+[node name="Button" type="Button" parent="UI/BricksButtons/Purple"]
+margin_right = 80.0
+margin_bottom = 40.0
+theme = ExtResource( 7 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+toggle_mode = true
+group = ExtResource( 9 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Red" type="Node2D" parent="UI/BricksButtons" groups=["brick_button"]]
+position = Vector2( 1770, 150 )
+
+[node name="Brick" parent="UI/BricksButtons/Red" instance=ExtResource( 5 )]
+modulate = Color( 1, 0.117647, 0, 1 )
+position = Vector2( 40, 20 )
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+resource = ExtResource( 11 )
+
+[node name="Button" type="Button" parent="UI/BricksButtons/Red"]
+margin_right = 80.0
+margin_bottom = 40.0
+theme = ExtResource( 7 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+toggle_mode = true
+group = ExtResource( 9 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="White" type="Node2D" parent="UI/BricksButtons" groups=["brick_button"]]
+position = Vector2( 1590, 200 )
+
+[node name="Brick" parent="UI/BricksButtons/White" instance=ExtResource( 5 )]
+position = Vector2( 40, 20 )
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+resource = ExtResource( 13 )
+
+[node name="Button" type="Button" parent="UI/BricksButtons/White"]
+margin_right = 80.0
+margin_bottom = 40.0
+theme = ExtResource( 7 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+toggle_mode = true
+group = ExtResource( 9 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Yellow" type="Node2D" parent="UI/BricksButtons" groups=["brick_button"]]
+position = Vector2( 1680, 200 )
+
+[node name="Brick" parent="UI/BricksButtons/Yellow" instance=ExtResource( 5 )]
+modulate = Color( 1, 1, 0, 1 )
+position = Vector2( 40, 20 )
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+resource = ExtResource( 16 )
+
+[node name="Button" type="Button" parent="UI/BricksButtons/Yellow"]
+margin_right = 80.0
+margin_bottom = 40.0
+theme = ExtResource( 7 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+toggle_mode = true
+group = ExtResource( 9 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Silver" type="Node2D" parent="UI/BricksButtons" groups=["brick_button"]]
+position = Vector2( 1770, 200 )
+
+[node name="Brick" parent="UI/BricksButtons/Silver" instance=ExtResource( 5 )]
+modulate = Color( 0.686275, 0.686275, 0.686275, 1 )
+position = Vector2( 40, 20 )
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+resource = ExtResource( 18 )
+
+[node name="Button" type="Button" parent="UI/BricksButtons/Silver"]
+margin_right = 80.0
+margin_bottom = 40.0
+theme = ExtResource( 7 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+toggle_mode = true
+group = ExtResource( 9 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Golden" type="Node2D" parent="UI/BricksButtons" groups=["brick_button"]]
+position = Vector2( 1590, 250 )
+
+[node name="Brick" parent="UI/BricksButtons/Golden" instance=ExtResource( 5 )]
+modulate = Color( 0.929412, 0.929412, 0.607843, 1 )
+material = ExtResource( 20 )
+position = Vector2( 40, 20 )
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+resource = ExtResource( 19 )
+
+[node name="Button" type="Button" parent="UI/BricksButtons/Golden"]
+margin_right = 80.0
+margin_bottom = 40.0
+theme = ExtResource( 7 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+toggle_mode = true
+group = ExtResource( 9 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Title" type="Label" parent="UI/BricksButtons"]
+margin_left = 1540.0
+margin_right = 1900.0
+margin_bottom = 80.0
+theme = ExtResource( 1 )
+text = "Bricks"
+align = 1
+valign = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Edges" type="Node2D" parent="."]
+
+[node name="Left" type="Node2D" parent="Edges"]
+position = Vector2( -540, 0 )
+
+[node name="Right" type="Node2D" parent="Edges"]
+position = Vector2( 540, 0 )
+
+[node name="Top" type="Node2D" parent="Edges"]
+position = Vector2( 0, -480 )
+
+[node name="Bottom" type="Node2D" parent="Edges"]
+position = Vector2( 0, 400 )
+
+[node name="Border" type="Polygon2D" parent="."]
+color = Color( 1, 0, 0, 1 )
+invert_enable = true
+invert_border = 2.0
+polygon = PoolVector2Array( -538, 398, -538, -478, 538, -478, 538, 398 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Bricks" type="Node2D" parent="."]
+z_index = -1
+
+[node name="UsableArea" type="ColorRect" parent="."]
+show_behind_parent = true
+material = SubResource( 6 )
+margin_left = -540.0
+margin_top = -480.0
+margin_right = 540.0
+margin_bottom = 400.0
+rect_pivot_offset = Vector2( 538, 330 )
+mouse_filter = 2
+
+[node name="UsableAreaold" type="Polygon2D" parent="."]
+visible = false
+material = SubResource( 5 )
+z_index = 1
+texture = ExtResource( 21 )
+polygon = PoolVector2Array( 540, -480, -540, -480, -540, 400, 540, 400 )
+uv = PoolVector2Array( 16, -3.8147e-06, 0, 0, 0, 16, 16.0001, 16 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[connection signal="pressed" from="UI/VBoxContainer/Save" to="UI" method="save_sector"]
+[connection signal="pressed" from="UI/VBoxContainer/Play" to="UI" method="play"]
+[connection signal="pressed" from="UI/VBoxContainer/Back" to="UI" method="back_to_menu"]

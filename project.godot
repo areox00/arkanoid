@@ -1,0 +1,253 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "Ball",
+"language": "GDScript",
+"path": "res://Scripts/Game/Ball.gd"
+}, {
+"base": "Node",
+"class": "BallSpawner",
+"language": "GDScript",
+"path": "res://Scripts/Game/BallSpawner.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Boss",
+"language": "GDScript",
+"path": "res://Scripts/Game/Boss.gd"
+}, {
+"base": "StaticBody2D",
+"class": "Brick",
+"language": "GDScript",
+"path": "res://Scripts/Game/Brick.gd"
+}, {
+"base": "StaticBody2D",
+"class": "BrickButton",
+"language": "GDScript",
+"path": "res://Scripts/Editor/BrickButton.gd"
+}, {
+"base": "CollisionObject2D",
+"class": "BrickPreview",
+"language": "GDScript",
+"path": "res://Scripts/Editor/BrickPreview.gd"
+}, {
+"base": "Resource",
+"class": "BrickResource",
+"language": "GDScript",
+"path": "res://Scripts/Resources/BrickResource.gd"
+}, {
+"base": "Node",
+"class": "Bricks",
+"language": "GDScript",
+"path": "res://Scripts/Game/Bricks.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Bullet",
+"language": "GDScript",
+"path": "res://Scripts/Game/Bullet.gd"
+}, {
+"base": "PowerUpResource",
+"class": "CatchBall",
+"language": "GDScript",
+"path": "res://Resources/PowerUps/CatchBall.gd"
+}, {
+"base": "Node2D",
+"class": "Editor",
+"language": "GDScript",
+"path": "res://Scripts/Editor/Editor.gd"
+}, {
+"base": "Node",
+"class": "EditorUI",
+"language": "GDScript",
+"path": "res://Scripts/UI/EditorUI.gd"
+}, {
+"base": "PowerUpResource",
+"class": "ExtendPaddle",
+"language": "GDScript",
+"path": "res://Resources/PowerUps/ExtendPaddle.gd"
+}, {
+"base": "Node",
+"class": "Game",
+"language": "GDScript",
+"path": "res://Scripts/Game/Game.gd"
+}, {
+"base": "Node",
+"class": "GameData",
+"language": "GDScript",
+"path": "res://Scripts/GameData.gd"
+}, {
+"base": "Node",
+"class": "GameEvents",
+"language": "GDScript",
+"path": "res://Scripts/Game/GameEvents.gd"
+}, {
+"base": "Resource",
+"class": "GameState",
+"language": "GDScript",
+"path": "res://Scripts/Game/GameState.gd"
+}, {
+"base": "Node",
+"class": "GameUI",
+"language": "GDScript",
+"path": "res://Scripts/UI/GameUI.gd"
+}, {
+"base": "PowerUpResource",
+"class": "Health",
+"language": "GDScript",
+"path": "res://Resources/PowerUps/Health.gd"
+}, {
+"base": "Button",
+"class": "HoverAnimation",
+"language": "GDScript",
+"path": "res://Scripts/UI/HoverAnimation.gd"
+}, {
+"base": "PowerUpResource",
+"class": "Laser",
+"language": "GDScript",
+"path": "res://Resources/PowerUps/Laser.gd"
+}, {
+"base": "PowerUpResource",
+"class": "MoreBalls",
+"language": "GDScript",
+"path": "res://Resources/PowerUps/MoreBalls.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Paddle",
+"language": "GDScript",
+"path": "res://Scripts/Game/Paddle.gd"
+}, {
+"base": "Area2D",
+"class": "PowerUp",
+"language": "GDScript",
+"path": "res://Scripts/Game/PowerUp.gd"
+}, {
+"base": "Resource",
+"class": "PowerUpResource",
+"language": "GDScript",
+"path": "res://Scripts/Resources/PowerUpResource.gd"
+}, {
+"base": "Node",
+"class": "ScreenEffects",
+"language": "GDScript",
+"path": "res://Scripts/Effects/ScreenEffects.gd"
+}, {
+"base": "Resource",
+"class": "SectorResource",
+"language": "GDScript",
+"path": "res://Scripts/Resources/SectorResource.gd"
+}, {
+"base": "PowerUpResource",
+"class": "StrongerBall",
+"language": "GDScript",
+"path": "res://Resources/PowerUps/StrongerBall.gd"
+}, {
+"base": "CanvasLayer",
+"class": "TransitionSector",
+"language": "GDScript",
+"path": "res://Scripts/UI/TransitionSector.gd"
+} ]
+_global_script_class_icons={
+"Ball": "",
+"BallSpawner": "",
+"Boss": "",
+"Brick": "",
+"BrickButton": "",
+"BrickPreview": "",
+"BrickResource": "",
+"Bricks": "",
+"Bullet": "",
+"CatchBall": "",
+"Editor": "",
+"EditorUI": "",
+"ExtendPaddle": "",
+"Game": "",
+"GameData": "",
+"GameEvents": "",
+"GameState": "",
+"GameUI": "",
+"Health": "",
+"HoverAnimation": "",
+"Laser": "",
+"MoreBalls": "",
+"Paddle": "",
+"PowerUp": "",
+"PowerUpResource": "",
+"ScreenEffects": "",
+"SectorResource": "",
+"StrongerBall": "",
+"TransitionSector": ""
+}
+
+[application]
+
+config/name="arkanoid"
+run/main_scene="res://Scenes/States/MainMenu.tscn"
+
+[autoload]
+
+game_data="*res://Scenes/GameData.tscn"
+
+[display]
+
+window/size/width=1920
+window/size/height=1080
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
+
+[editor_plugins]
+
+enabled=PoolStringArray(  )
+
+[gui]
+
+common/drop_mouse_on_gui_input_disabled=true
+
+[input]
+
+paddle_right={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":16777233,"unicode":0,"echo":false,"script":null)
+ ]
+}
+paddle_left={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":16777231,"unicode":0,"echo":false,"script":null)
+ ]
+}
+release={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":32,"unicode":0,"echo":false,"script":null)
+ ]
+}
+put_brick={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+remove_brick={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":2,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+pause={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":16777217,"unicode":0,"echo":false,"script":null)
+ ]
+}
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+environment/default_clear_color=Color( 0, 0, 0, 1 )
+environment/default_environment="res://default_env.tres"

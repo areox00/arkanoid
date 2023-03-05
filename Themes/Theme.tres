@@ -1,0 +1,161 @@
+[gd_resource type="Theme" load_steps=26 format=2]
+
+[ext_resource path="res://Themes/Fonts/Font32.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Themes/Fonts/Font48.tres" type="DynamicFont" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=23]
+
+[sub_resource type="StyleBoxEmpty" id=24]
+
+[sub_resource type="StyleBoxEmpty" id=25]
+
+[sub_resource type="StyleBoxEmpty" id=26]
+
+[sub_resource type="StyleBoxEmpty" id=27]
+
+[sub_resource type="StyleBoxFlat" id=10]
+
+[sub_resource type="Gradient" id=20]
+interpolation_mode = 2
+offsets = PoolRealArray( 0.127923, 0.5, 0.841816 )
+colors = PoolColorArray( 0.0117647, 0.807843, 0.643137, 0.392157, 0.113725, 0.12549, 0.121569, 0.654902, 0.0117647, 0.807843, 0.643137, 0.392157 )
+
+[sub_resource type="GradientTexture2D" id=21]
+gradient = SubResource( 20 )
+fill_from = Vector2( 0.5, 1 )
+fill_to = Vector2( 0.5, 0 )
+
+[sub_resource type="StyleBoxTexture" id=35]
+texture = SubResource( 21 )
+region_rect = Rect2( 0, 0, 64, 64 )
+margin_left = 15.0
+margin_right = 15.0
+margin_top = 15.0
+margin_bottom = 15.0
+
+[sub_resource type="StyleBoxEmpty" id=36]
+
+[sub_resource type="StyleBoxEmpty" id=37]
+
+[sub_resource type="StyleBoxEmpty" id=38]
+
+[sub_resource type="StyleBoxFlat" id=15]
+bg_color = Color( 1, 1, 1, 0.196078 )
+
+[sub_resource type="StyleBoxEmpty" id=41]
+
+[sub_resource type="Gradient" id=43]
+interpolation_mode = 2
+colors = PoolColorArray( 0.0117647, 0.807843, 0.643137, 0.392157, 0.109502, 0.12083, 0.117054, 0.901826 )
+
+[sub_resource type="GradientTexture2D" id=44]
+gradient = SubResource( 43 )
+fill_from = Vector2( 0, 1 )
+
+[sub_resource type="StyleBoxTexture" id=45]
+texture = SubResource( 44 )
+region_rect = Rect2( 0, 0, 64, 64 )
+margin_left = 15.0
+margin_right = 15.0
+margin_top = 15.0
+margin_bottom = 15.0
+
+[sub_resource type="StyleBoxEmpty" id=42]
+
+[sub_resource type="StyleBoxTexture" id=22]
+texture = SubResource( 21 )
+region_rect = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="StyleBoxFlat" id=32]
+bg_color = Color( 0.419608, 0.419608, 0.419608, 1 )
+
+[sub_resource type="StyleBoxFlat" id=33]
+bg_color = Color( 0.941176, 0.176471, 0.227451, 1 )
+
+[sub_resource type="StyleBoxFlat" id=34]
+bg_color = Color( 0.866667, 0.0156863, 0.14902, 1 )
+
+[sub_resource type="StyleBoxEmpty" id=39]
+
+[resource]
+Button/colors/font_color = Color( 0.937255, 0.964706, 0.933333, 1 )
+Button/colors/font_color_disabled = Color( 0.929412, 0.94902, 0.956863, 0.196078 )
+Button/colors/font_color_focus = Color( 0.866667, 0.0156863, 0.14902, 1 )
+Button/colors/font_color_hover = Color( 0.941176, 0.176471, 0.227451, 1 )
+Button/colors/font_color_pressed = Color( 0.941176, 0.176471, 0.227451, 1 )
+Button/constants/hseparation = 2
+Button/fonts/font = ExtResource( 4 )
+Button/styles/disabled = SubResource( 23 )
+Button/styles/focus = SubResource( 24 )
+Button/styles/hover = SubResource( 25 )
+Button/styles/normal = SubResource( 26 )
+Button/styles/pressed = SubResource( 27 )
+CheckBox/colors/font_color = Color( 0.88, 0.88, 0.88, 1 )
+CheckBox/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
+CheckBox/colors/font_color_focus = Color( 0.94, 0.94, 0.94, 1 )
+CheckBox/colors/font_color_hover = Color( 0.94, 0.94, 0.94, 1 )
+CheckBox/colors/font_color_hover_pressed = Color( 1, 1, 1, 1 )
+CheckBox/colors/font_color_pressed = Color( 1, 1, 1, 1 )
+CheckBox/constants/check_vadjust = 0
+CheckBox/constants/hseparation = 4
+CheckBox/fonts/font = null
+CheckBox/icons/checked = null
+CheckBox/icons/checked_disabled = null
+CheckBox/icons/radio_checked = null
+CheckBox/icons/radio_checked_disabled = null
+CheckBox/icons/radio_unchecked = null
+CheckBox/icons/radio_unchecked_disabled = null
+CheckBox/icons/unchecked = null
+CheckBox/icons/unchecked_disabled = null
+CheckBox/styles/disabled = null
+CheckBox/styles/focus = null
+CheckBox/styles/hover = null
+CheckBox/styles/hover_pressed = null
+CheckBox/styles/normal = null
+CheckBox/styles/pressed = SubResource( 10 )
+HBoxContainer/constants/separation = 15
+HSeparator/constants/separation = 59
+HSeparator/styles/separator = null
+ItemList/colors/font_color = Color( 0.937255, 0.964706, 0.933333, 1 )
+ItemList/colors/font_color_selected = Color( 0.811765, 0.858824, 0.811765, 1 )
+ItemList/colors/guide_color = Color( 0, 0, 0, 0 )
+ItemList/constants/hseparation = 4
+ItemList/constants/icon_margin = 4
+ItemList/constants/line_separation = 2
+ItemList/constants/vseparation = 4
+ItemList/fonts/font = ExtResource( 2 )
+ItemList/styles/bg = SubResource( 35 )
+ItemList/styles/bg_focus = SubResource( 36 )
+ItemList/styles/cursor = SubResource( 37 )
+ItemList/styles/cursor_unfocused = SubResource( 38 )
+ItemList/styles/selected = SubResource( 15 )
+ItemList/styles/selected_focus = SubResource( 15 )
+Label/colors/font_color = Color( 0.937255, 0.964706, 0.933333, 1 )
+Label/fonts/font = ExtResource( 4 )
+LineEdit/colors/clear_button_color = Color( 0.88, 0.88, 0.88, 1 )
+LineEdit/colors/clear_button_color_pressed = Color( 1, 1, 1, 1 )
+LineEdit/colors/cursor_color = Color( 0.94, 0.94, 0.94, 1 )
+LineEdit/colors/font_color = Color( 0.937255, 0.964706, 0.933333, 1 )
+LineEdit/colors/font_color_selected = Color( 0, 0, 0, 1 )
+LineEdit/colors/font_color_uneditable = Color( 0.88, 0.88, 0.88, 0.5 )
+LineEdit/colors/selection_color = Color( 0.49, 0.49, 0.49, 1 )
+LineEdit/fonts/font = ExtResource( 2 )
+LineEdit/icons/clear = null
+LineEdit/styles/focus = SubResource( 41 )
+LineEdit/styles/normal = SubResource( 45 )
+LineEdit/styles/read_only = SubResource( 42 )
+Panel/styles/panel = SubResource( 22 )
+RichTextLabel/colors/default_color = Color( 0.929412, 0.94902, 0.956863, 1 )
+RichTextLabel/fonts/normal_font = ExtResource( 4 )
+VBoxContainer/constants/separation = 6
+VScrollBar/icons/decrement = null
+VScrollBar/icons/decrement_highlight = null
+VScrollBar/icons/decrement_pressed = null
+VScrollBar/icons/increment = null
+VScrollBar/icons/increment_highlight = null
+VScrollBar/icons/increment_pressed = null
+VScrollBar/styles/grabber = SubResource( 32 )
+VScrollBar/styles/grabber_highlight = SubResource( 33 )
+VScrollBar/styles/grabber_pressed = SubResource( 34 )
+VSeparator/constants/separation = 32
+VSeparator/styles/separator = SubResource( 39 )

@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Materials/Boss.tres" type="Material" id=1]
+[ext_resource path="res://Textures/BossMask.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Game/Boss.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/BossTrail.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scripts/Effects/TrailSprite.gd" type="Script" id=5]
+[ext_resource path="res://Sounds/boss_fire.ogg" type="AudioStream" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 85, 130 )
+
+[node name="KinematicBody2D" type="KinematicBody2D" groups=["boss"]]
+collision_mask = 257
+script = ExtResource( 3 )
+
+[node name="Trail" type="Node2D" parent="."]
+script = ExtResource( 5 )
+length = 25
+ghost = ExtResource( 4 )
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+margin_left = -60.0
+margin_top = -30.0
+margin_right = 60.0
+margin_bottom = 20.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -60.0
+margin_top = -90.0
+margin_right = 60.0
+margin_bottom = -40.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+material = ExtResource( 1 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource( 1 )
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
+pitch_scale = 1.13

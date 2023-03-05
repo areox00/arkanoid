@@ -1,0 +1,35 @@
+[gd_resource type="ShaderMaterial" load_steps=8 format=2]
+
+[ext_resource path="res://Shaders/Boss.shader" type="Shader" id=1]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0.202778, 0.709259 )
+
+[sub_resource type="GradientTexture2D" id=2]
+gradient = SubResource( 1 )
+fill_to = Vector2( 1, 0.0277778 )
+
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0.294444, 0.415741, 0.606481 )
+colors = PoolColorArray( 0.934066, 0.934066, 0.934066, 1, 0.224609, 0.224609, 0.224609, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture2D" id=4]
+gradient = SubResource( 3 )
+fill_from = Vector2( 0, 1 )
+fill_to = Vector2( 0, 0.519444 )
+
+[sub_resource type="OpenSimplexNoise" id=5]
+
+[sub_resource type="NoiseTexture" id=6]
+noise = SubResource( 5 )
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/rows = 10.0
+shader_param/columns = 12.0
+shader_param/hit_color = Color( 1, 0, 0, 1 )
+shader_param/hit_mix = 0.0
+shader_param/explosion_progress = 1.0
+shader_param/gradient_h = SubResource( 2 )
+shader_param/gradient_v = SubResource( 4 )
+shader_param/grid_texture = SubResource( 6 )

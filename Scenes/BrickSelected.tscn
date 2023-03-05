@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/Editor/BrickPreview.gd" type="Script" id=1]
+[ext_resource path="res://Resources/Bricks/AquaBrick.tres" type="Resource" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 35, 15 )
+
+[node name="SelectedBrick" type="Area2D"]
+z_index = 1
+script = ExtResource( 1 )
+resource = ExtResource( 2 )
+removable = false
+
+[node name="Polygon2D2" type="Polygon2D" parent="."]
+position = Vector2( -5, 5.0002 )
+z_index = -1
+color = Color( 0, 0, 0, 1 )
+offset = Vector2( 6, 6 )
+polygon = PoolVector2Array( -46, -26, 34, -26, 34, 14, -46, 14 )
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2( 0, 0.000202179 )
+offset = Vector2( 6, 6 )
+polygon = PoolVector2Array( -46, -26, 34, -26, 34, 14, -46, 14 )
+
+[node name="Polygon2D3" type="Polygon2D" parent="."]
+position = Vector2( 0, 0.000202179 )
+offset = Vector2( 6, 6 )
+polygon = PoolVector2Array( -41, -21, 29, -21, 29, 9, -41, 9 )
+
+[node name="Polygon2D4" type="Polygon2D" parent="."]
+position = Vector2( -125, -4.9998 )
+color = Color( 0.352941, 0.352941, 0.352941, 1 )
+offset = Vector2( 6, 6 )
+polygon = PoolVector2Array( 79, -21, 84, -16, 84, 14, 154, 14, 159, 19, 79, 19 )
+
+[node name="Polygon2D5" type="Polygon2D" parent="."]
+position = Vector2( 40, -19.9998 )
+rotation = -3.14159
+color = Color( 0.690196, 0.690196, 0.690196, 1 )
+offset = Vector2( -80, -20 )
+polygon = PoolVector2Array( 80, -20, 85, -15, 85, 15, 155, 15, 160, 20, 80, 20 )
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )

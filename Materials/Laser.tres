@@ -1,0 +1,62 @@
+[gd_resource type="ShaderMaterial" load_steps=6 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform float wobbliness = 0.5;
+uniform float laser_size = 0.5;
+uniform float speed = 0.5;
+uniform vec4 color1 : hint_color;
+uniform vec4 color2: hint_color;
+
+uniform sampler2D noise1;
+uniform sampler2D noise2;
+
+uniform float glow;
+uniform float mix_factor;
+
+void fragment() {
+	float intensity1 = textureLod(noise1, UV * vec2(1.0, 0.2) - TIME * vec2(1, 0.4) * speed, 0.0).r;
+	float intensity2 = textureLod(noise2, UV * vec2(1.0, 0.2) - TIME * vec2(0.2, 1.4) * speed, 0.0).r;
+	
+	float intensity = intensity1 * intensity2;
+	
+	float centrality = (1.0 - abs(UV.y - 0.5)) * 0.5;
+	
+	if (wobbliness * intensity + (1.0 - wobbliness) * centrality > 1.0 - laser_size) {
+		COLOR = mix(color1, color2, clamp(intensity * mix_factor, 0.0, 1.0)) * glow;
+	}
+	
+	//COLOR = vec4(1.0, 1.0, 1.0, 1.0);
+	
+	//COLOR = texture(color_ramp, vec2(final_noise.r));
+}"
+
+[sub_resource type="OpenSimplexNoise" id=11]
+seed = 176
+
+[sub_resource type="NoiseTexture" id=12]
+seamless = true
+noise = SubResource( 11 )
+
+[sub_resource type="OpenSimplexNoise" id=9]
+seed = 179
+period = 185.3
+persistence = 0.248
+lacunarity = 0.63
+
+[sub_resource type="NoiseTexture" id=10]
+seamless = true
+noise = SubResource( 9 )
+
+[resource]
+shader = SubResource( 1 )
+shader_param/wobbliness = 0.304
+shader_param/laser_size = 0.7
+shader_param/speed = 0.8
+shader_param/color1 = Color( 0, 0.192157, 1, 1 )
+shader_param/color2 = Color( 0, 0.988235, 1, 1 )
+shader_param/glow = 1.2
+shader_param/mix_factor = 1.452
+shader_param/noise1 = SubResource( 12 )
+shader_param/noise2 = SubResource( 10 )

@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Themes/Theme.tres" type="Theme" id=1]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="TransitionSector" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Sector" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -160.0
+margin_top = -60.0
+margin_right = 160.0
+margin_bottom = 100.0
+theme = ExtResource( 1 )
+text = "Sector X"
+align = 1
+valign = 1

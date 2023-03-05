@@ -1,0 +1,7 @@
+[gd_scene format=2]
+
+[node name="Square" type="Node2D"]
+
+[node name="Polygon" type="Polygon2D" parent="."]
+offset = Vector2( -60, -60 )
+polygon = PoolVector2Array( 40, 40, 40, 80, 80, 80, 80, 40 )
