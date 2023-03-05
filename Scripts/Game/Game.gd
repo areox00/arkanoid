@@ -69,8 +69,6 @@ func unlock_paddle():
 	paddle.paused = false;
 
 func reset_powerups_effects():
-	total_powerups_collected += 1;
-	
 	paddle.laser_off();
 	paddle.extend_off();
 	get_tree().call_group("ball", "make_normal_damage");
@@ -223,6 +221,9 @@ func health():
 	paddle.add_live(1);
 	ui.set_lives(paddle.lives);
 
+func add_collected_count():
+	total_powerups_collected += 1;
+
 func setup_game():
 	if game_data.continue_game:
 		var state = load("user://game_state.res") as GameState;
@@ -242,6 +243,7 @@ func setup_game():
 	paddle.connect("hit", self, "on_paddle_hit");
 	
 	event_bus.connect("powerup_collected", self, "reset_powerups_effects");
+	event_bus.connect("powerup_collected", self, "add_collected_count");
 	
 	event_bus.connect("powerup_more_balls", self, "spawn_balls");
 	event_bus.connect("powerup_stronger_ball", self, "stronger_ball");
