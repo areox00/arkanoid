@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scripts/Game/Brick.gd" type="Script" id=1]
 [ext_resource path="res://Textures/placeholder.png" type="Texture" id=2]
-[ext_resource path="res://Materials/Shine.tres" type="Material" id=3]
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 40, 20 )
@@ -43,13 +42,6 @@ color = Color( 0.690196, 0.690196, 0.690196, 1 )
 offset = Vector2( -80, -20 )
 texture = ExtResource( 2 )
 polygon = PoolVector2Array( 80, -20, 85, -15, 85, 15, 155, 15, 160, 20, 80, 20 )
-
-[node name="Shine" type="Sprite" parent="."]
-visible = false
-material = ExtResource( 3 )
-position = Vector2( -2.86102e-06, 9.53674e-07 )
-scale = Vector2( 80, 40 )
-texture = ExtResource( 2 )
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2( 9.91821e-05, 0.000202179 )
