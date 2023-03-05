@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Themes/Theme.tres" type="Theme" id=1]
 [ext_resource path="res://Scripts/Effects/CameraShake.gd" type="Script" id=2]
@@ -19,7 +19,6 @@
 [ext_resource path="res://Scripts/UI/HoverAnimation.gd" type="Script" id=17]
 [ext_resource path="res://Resources/Bricks/SilverBrick.tres" type="Resource" id=18]
 [ext_resource path="res://Resources/Bricks/GoldenBrick.tres" type="Resource" id=19]
-[ext_resource path="res://Materials/Shine.tres" type="Material" id=20]
 [ext_resource path="res://Textures/placeholder.png" type="Texture" id=21]
 [ext_resource path="res://Shaders/EditorGrid.shader" type="Shader" id=22]
 
@@ -334,7 +333,7 @@ __meta__ = {
 position = Vector2( 1770, 200 )
 
 [node name="Brick" parent="UI/BricksButtons/Silver" instance=ExtResource( 5 )]
-modulate = Color( 0.686275, 0.686275, 0.686275, 1 )
+modulate = Color( 0.568627, 0.568627, 0.568627, 1 )
 position = Vector2( 40, 20 )
 script = ExtResource( 6 )
 __meta__ = {
@@ -357,8 +356,7 @@ __meta__ = {
 position = Vector2( 1590, 250 )
 
 [node name="Brick" parent="UI/BricksButtons/Golden" instance=ExtResource( 5 )]
-modulate = Color( 0.929412, 0.929412, 0.607843, 1 )
-material = ExtResource( 20 )
+modulate = Color( 1.2, 1.2, 0.65, 1 )
 position = Vector2( 40, 20 )
 script = ExtResource( 6 )
 __meta__ = {
