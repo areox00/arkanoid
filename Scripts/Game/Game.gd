@@ -277,7 +277,3 @@ func _ready():
 func _process(delta):
 	if Input.is_action_pressed("release") and release_ready:
 		get_tree().call_group("ball", "release", paddle.direction.x, ball_spawner);
-	
-	if Input.is_action_just_pressed("ui_home"):
-		current_sector += 1;
-		start_sector(current_sector);
