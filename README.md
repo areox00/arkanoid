@@ -7,3 +7,7 @@ Controls:
 - Space - releasing ball
 
 To test the game, download both .exe and .pck file from releases tab, and put them into the same folder.
+
+Sound effects are remixed samples (chopping, speed modulation, mixing) from opengameart:  
+- https://opengameart.org/content/space-shooter-sound-effects
+- https://opengameart.org/content/9-sci-fi-computer-sounds-and-beeps
